@@ -1,0 +1,13 @@
+@font-face {
+    font-family: 'CaslonTwoBlackSSK';
+    src: url('CaslonTwoBlackSSK.eot');
+    src: url('CaslonTwoBlackSSK.eot?#iefix') format('embedded-opentype'),
+        url('CaslonTwoBlackSSK.woff2') format('woff2'),
+        url('CaslonTwoBlackSSK.woff') format('woff'),
+        url('CaslonTwoBlackSSK.ttf') format('truetype'),
+        url('CaslonTwoBlackSSK.svg#CaslonTwoBlackSSK') format('svg');
+    font-weight: 900;
+    font-style: normal;
+    font-display: swap;
+}
+
