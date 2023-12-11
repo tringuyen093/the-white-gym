@@ -1,22 +1,22 @@
-version: 0.1
+version: 0.2
 
 phases:
   install:
-    runtime-version:
-    nodejs: 18
-  pre-build:
+    runtime-versions:
+      nodejs: 18
+  pre_build:
     commands:
       - cd app
-      - echo Installing source NPM dependencies...
+      - echo Installing source NPM dependencies ...
       - npm install
   build:
     commands:
-      - echo Build started ...
+      - echo Build started ..
       - npm run build
 
 artifacts:
   files:
     - '**/*'
-  base-directory:
-    'app/dist'
-  #discard-paths: yes  
+    #- "app/dist/**/*"
+  base-directory: 'app/build'
+  #discard-paths: yes
