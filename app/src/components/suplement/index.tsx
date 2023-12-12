@@ -47,6 +47,11 @@ const ContainerWrapper = styled.div`
       object-fit: cover;
     }
   }
+
+  .swiper-button-prev,
+  .swiper-button-next {
+    color: var(--color-gray-500);
+  }
 `;
 
 const suplements = [
@@ -74,10 +79,10 @@ const Suplement = () => {
         spaceBetween={50}
         navigation={true}
         loop={true}
-        // autoplay={{
-        //   delay: 3000,
-        //   disableOnInteraction: false,
-        // }}
+        autoplay={{
+          delay: 3000,
+          disableOnInteraction: false,
+        }}
         modules={[Autoplay, Navigation]}
         className="suplement-swiper"
       >
