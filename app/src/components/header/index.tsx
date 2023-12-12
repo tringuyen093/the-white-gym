@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import mediaQuery from '@/utils/units/mediaQuery';
 import useResize from '@/hooks/useResize';
 import styled from 'styled-components';
-import logo from '@/assets/images/whitegym-logo.jpeg';
+import logo from '@/assets/images/thewhitegym-logo.png';
 
 const HeaderWrapper = styled.div`
   position: fixed;
@@ -33,7 +33,7 @@ const HeaderWrapper = styled.div`
 
     img {
       transition: all 300ms ease;
-      width: 270px;
+      width: 300px;
     }
   }
 

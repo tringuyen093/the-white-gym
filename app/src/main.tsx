@@ -12,7 +12,6 @@ import Header from '@/components/header';
 import mediaQuery from '@/utils/units/mediaQuery';
 import './style.ts';
 
-const relativeUrl = '/src/assets/images/whitegym-logo.jpeg';
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
 
 const MainWrapper = styled.div`
@@ -46,9 +45,13 @@ const RootApp = () => {
     <>
       <Global styles={[GlobalStyle, style]} />
       <Helmet>
-        <link rel="icon" type="image/svg+xml" href={relativeUrl} />
-        <meta property="og:URL" key="og:URL" content={toAbsoluteUrl(relativeUrl)} />
-        <meta property="og:image" key="og:image" content={toAbsoluteUrl(relativeUrl)} />
+        <link
+          rel="icon"
+          type="image/svg+xml"
+          href="/src/assets/images/thewhitegym-logo-full.jpeg"
+        />
+        <meta property="og:URL" key="og:URL" content="https://imgur.com/bKNCVZE" />
+        <meta property="og:image" key="og:image" content="https://imgur.com/bKNCVZE" />
         <meta property="og:type" key="og:type" content="article" />
         <meta property="og:title" key="og:title" content="The White Gym" />
         <meta property="og:description" key="og:description" content="Health & Fitness" />
