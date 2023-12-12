@@ -32,10 +32,6 @@ const LoadingWrapper = styled.div`
   }
 `;
 
-const toAbsoluteUrl = (relativeUrl: string) => {
-  return window.location.protocol + '//' + window.location.host + relativeUrl;
-};
-
 const Loading = () => {
   return <LoadingWrapper />;
 };
