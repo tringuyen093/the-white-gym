@@ -33,7 +33,7 @@ const HeaderWrapper = styled.div`
 
     img {
       transition: all 300ms ease;
-      width: 170px;
+      width: 270px;
     }
   }
 
@@ -158,16 +158,20 @@ const HeaderMobileWrapper = styled.div`
 
 const menus = [
   {
-    name: 'Price',
-    url: '/price',
+    name: 'Prices',
+    url: '/prices',
   },
   {
     name: 'Personal Trainer',
-    url: '/pt',
+    url: '/personal-trainer',
   },
   {
-    name: 'Drinks',
-    url: '/drinks',
+    name: 'Suplements',
+    url: '/suplements',
+  },
+  {
+    name: 'Equipments',
+    url: '/equipments',
   },
 ];
 
