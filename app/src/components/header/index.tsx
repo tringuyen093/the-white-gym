@@ -199,7 +199,7 @@ const HeaderDesktop = () => (
   <div className="container">
     <div className="logo">
       <Link to="/">
-        <img src={logo} alt="whitegym-logo" />
+        <img src={logo} alt="thewhitegym-logo" />
       </Link>
     </div>
 
