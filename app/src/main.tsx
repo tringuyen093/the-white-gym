@@ -41,13 +41,15 @@ const RootApp = () => {
     <>
       <Global styles={[GlobalStyle, style]} />
       <Helmet>
-        <link rel="icon" type="image/svg+xml" href="https://i.imgur.com/bKNCVZE.jpg" />
         <meta property="og:URL" key="og:URL" content="https://i.imgur.com/bKNCVZE.jpg" />
         <meta property="og:image" key="og:image" content="https://i.imgur.com/bKNCVZE.jpg" />
-        <meta property="og:type" key="og:type" content="article" />
+        <meta property="og:type" key="og:type" content="website" />
         <meta property="og:title" key="og:title" content="The White Gym" />
         <meta property="og:description" key="og:description" content="Health & Fitness" />
-        <title>The White Gym</title>
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="The White Gym" />
+        <meta name="twitter:description" content="Health & Fitness" />
+        <meta name="twitter:image" content="https://i.imgur.com/bKNCVZE.jpg" />
       </Helmet>
 
       <BrowserRouter>
