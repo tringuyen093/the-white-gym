@@ -31,14 +31,19 @@ const ContainerWrapper = styled.div`
     .content-left {
       flex: 0 0 30%;
       display: flex;
-      align-items: flex-end;
+      flex-direction: column;
+      justify-content: flex-end;
 
       span {
         font-family: 'CaslonTwoBlackSSK';
-        font-size: 270px;
-        line-height: normal;
+        font-size: 200px;
+        line-height: 150px;
         color: black;
-        margin-bottom: var(--space-2xl);
+        margin-bottom: var(--space-3xl);
+      }
+
+      .title-and {
+        font-size: 80px;
       }
     }
 
@@ -149,7 +154,12 @@ const Home = () => {
     <ContainerWrapper>
       <div className="home-wrapper">
         <div className="content-left">
-          <span>Gym.</span>
+          <div>
+            <span>Health</span>
+            <span className="title-and">&nbsp;&</span>
+          </div>
+
+          <span>Fitness</span>
         </div>
 
         <div className="content-right">
@@ -158,6 +168,7 @@ const Home = () => {
               Slide
             </div>
           </div>
+
           <Swiper slidesPerView="auto" loop={true} className="slide-swiper" ref={sliderRef}>
             {items.map(({ title, url, description }, idx) => {
               return (
