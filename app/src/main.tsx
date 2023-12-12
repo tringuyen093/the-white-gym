@@ -4,6 +4,7 @@ import * as ReactDOM from 'react-dom/client';
 import { BrowserRouter } from 'react-router-dom';
 import { Global } from '@emotion/react';
 import { GlobalStyle } from '@/globalStyle';
+import { Helmet } from 'react-helmet';
 import styled from 'styled-components';
 import style from '@/style';
 import App from '@/App.tsx';
@@ -11,6 +12,7 @@ import Header from '@/components/header';
 import mediaQuery from '@/utils/units/mediaQuery';
 import './style.ts';
 
+const relativeUrl = '/src/assets/images/whitegym-logo.jpeg';
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
 
 const MainWrapper = styled.div`
@@ -31,21 +33,43 @@ const LoadingWrapper = styled.div`
   }
 `;
 
+const toAbsoluteUrl = (relativeUrl: string) => {
+  return window.location.protocol + '//' + window.location.host + relativeUrl;
+};
+
 const Loading = () => {
   return <LoadingWrapper />;
 };
 
+const RootApp = () => {
+  return (
+    <>
+      <Global styles={[GlobalStyle, style]} />
+      <Helmet>
+        <link rel="icon" type="image/svg+xml" href={relativeUrl} />
+        <meta property="og:URL" key="og:URL" content={toAbsoluteUrl(relativeUrl)} />
+        <meta property="og:image" key="og:image" content={toAbsoluteUrl(relativeUrl)} />
+        <meta property="og:type" key="og:type" content="article" />
+        <meta property="og:title" key="og:title" content="The White Gym" />
+        <meta property="og:description" key="og:description" content="Health & Fitness" />
+        <title>The White Gym</title>
+      </Helmet>
+
+      <BrowserRouter>
+        <Header />
+
+        <MainWrapper>
+          <Suspense fallback={<Loading />}>
+            <App />
+          </Suspense>
+        </MainWrapper>
+      </BrowserRouter>
+    </>
+  );
+};
+
 root.render(
   <StrictMode>
-    <Global styles={[GlobalStyle, style]} />
-    <BrowserRouter>
-      <Header />
-
-      <MainWrapper>
-        <Suspense fallback={<Loading />}>
-          <App />
-        </Suspense>
-      </MainWrapper>
-    </BrowserRouter>
+    <RootApp />
   </StrictMode>,
 );
