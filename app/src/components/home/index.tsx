@@ -174,7 +174,7 @@ const Home = () => {
               return (
                 <SwiperSlide key={idx}>
                   <SliderContent>
-                    <img src={url} alt={title} />
+                    <img src={url} alt={title} loading="lazy" />
                     <h3 className="title">{title}</h3>
                     <span href={url} className="description">
                       {description}

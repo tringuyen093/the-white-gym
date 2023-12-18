@@ -89,7 +89,7 @@ const Suplement = () => {
         {suplements.map((url, idx) => {
           return (
             <SwiperSlide key={idx}>
-              <img src={url} alt={url} />
+              <img src={url} alt={url} loading="lazy" />
             </SwiperSlide>
           );
         })}
