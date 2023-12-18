@@ -25,7 +25,7 @@ const ContainerWrapper = styled.div`
 const Price = () => {
   return (
     <ContainerWrapper>
-      <img src={priceImg} alt="price-img" loading="lazy" />
+      <img src={priceImg} alt="price-img" />
     </ContainerWrapper>
   );
 };
