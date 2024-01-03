@@ -40,11 +40,17 @@ const ContainerWrapper = styled.div`
     height: 100%;
   }
 
-  .swiper-slide {
+  .swiper {
+    margin: 0;
     height: 100%;
 
-    img {
-      object-fit: cover;
+    .swiper-slide {
+      height: 100%;
+      aspect-ratio: 9 / 16;
+
+      img {
+        object-fit: cover;
+      }
     }
   }
 
@@ -75,7 +81,7 @@ const Suplement = () => {
   return (
     <ContainerWrapper>
       <Swiper
-        slidesPerView={2}
+        slidesPerView={1}
         spaceBetween={50}
         navigation={true}
         loop={true}
