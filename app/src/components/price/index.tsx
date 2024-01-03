@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import mediaQuery from '@/utils/units/mediaQuery';
-import priceImg from '@/assets/images/price.jpeg';
+import memberPriceImg from '@/assets/images/prices/member-price.jpg';
 
 const ContainerWrapper = styled.div`
   padding: 0 var(--space-3xl);
@@ -19,13 +19,14 @@ const ContainerWrapper = styled.div`
   img {
     width: 100%;
     height: 100%;
+    object-fit: contain;
   }
 `;
 
 const Price = () => {
   return (
     <ContainerWrapper>
-      <img src={priceImg} alt="price-img" loading="lazy" />
+      <img src={memberPriceImg} alt="price-img" loading="lazy" />
     </ContainerWrapper>
   );
 };

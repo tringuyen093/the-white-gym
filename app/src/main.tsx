@@ -18,6 +18,11 @@ const MainWrapper = styled.div`
   padding-top: 100px;
   height: calc(100vh - 100px);
 
+  ${mediaQuery['belowDesktop']} {
+    padding-top: 80px;
+    height: calc(100vh - 80px);
+  }
+
   ${mediaQuery['belowTablet']} {
     padding-top: 60px;
     height: calc(100vh - 60px);
@@ -26,6 +31,10 @@ const MainWrapper = styled.div`
 
 const LoadingWrapper = styled.div`
   height: calc(100vh - 100px);
+
+  ${mediaQuery['belowDesktop']} {
+    height: calc(100vh - 80px);
+  }
 
   ${mediaQuery['belowTablet']} {
     height: calc(100vh - 60px);

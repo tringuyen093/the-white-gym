@@ -1,6 +1,8 @@
 import { IVariable } from './types';
 
 const mediaQuery: IVariable = {
+  aboveBiggerDesktop: '@media (min-width: 1500px)',
+  belowBiggerDesktop: '@media (max-width: 1499px)',
   aboveDesktop: '@media (min-width: 1140px)',
   belowDesktop: '@media (max-width: 1139px)',
   betweenDesktopAndTablet: '@media (max-width: 1139px) and (min-width: 768px)',

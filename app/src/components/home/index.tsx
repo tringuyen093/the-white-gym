@@ -1,27 +1,21 @@
 import React, { useRef, useCallback } from 'react';
 import styled from 'styled-components';
+import useResize from '@/hooks/useResize';
 import mediaQuery from '@/utils/units/mediaQuery';
 
 import { Swiper, SwiperSlide } from 'swiper/react';
+import { Autoplay } from 'swiper/modules';
 import 'swiper/css';
 
-import slider1 from '@/assets/images/slider-1.jpeg';
-import slider2 from '@/assets/images/slider-2.jpeg';
-import slider3 from '@/assets/images/slider-3.jpeg';
+import slider1 from '@/assets/images/equipments/1.jpg';
+import slider2 from '@/assets/images/equipments/6.jpeg';
+import slider3 from '@/assets/images/equipments/5.jpg';
+import slider4 from '@/assets/images/equipments/2.jpeg';
 
 const ContainerWrapper = styled.div`
   padding: 0 var(--space-3xl);
   margin: var(--space-3xl) auto;
   height: calc(100% - 100px);
-
-  ${mediaQuery['belowDesktop']} {
-    margin: 0 var(--space-3xl);
-  }
-
-  ${mediaQuery['belowTablet']} {
-    margin: 0 var(--space-xl);
-    padding: 0;
-  }
 
   .home-wrapper {
     display: flex;
@@ -36,8 +30,8 @@ const ContainerWrapper = styled.div`
 
       span {
         font-family: 'CaslonTwoBlackSSK';
-        font-size: 200px;
-        line-height: 150px;
+        font-size: 150px;
+        line-height: 130px;
         color: black;
         margin-bottom: var(--space-3xl);
       }
@@ -70,7 +64,7 @@ const ContainerWrapper = styled.div`
           display: flex;
           justify-content: center;
           align-items: center;
-          transform: all 300ms ease;
+          transition: all 300ms ease;
 
           &:hover {
             opacity: 0.7;
@@ -84,7 +78,6 @@ const ContainerWrapper = styled.div`
       height: 100%;
 
       .swiper-slide {
-        width: fit-content !important;
         margin-left: 90px;
 
         img {
@@ -94,13 +87,97 @@ const ContainerWrapper = styled.div`
       }
     }
   }
+
+  ${mediaQuery['aboveDesktop']} {
+    .swiper {
+      .swiper-slide {
+        width: fit-content !important;
+      }
+    }
+  }
+
+  ${mediaQuery['belowBiggerDesktop']} {
+    margin: var(--space-2xl) var(--space-3xl);
+    padding: 0;
+
+    .home-wrapper {
+      .content-left {
+        span {
+          font-size: 120px;
+          line-height: 130px;
+        }
+      }
+
+      .swiper {
+        .swiper-slide {
+          margin-left: 60px;
+        }
+      }
+    }
+  }
+
+  ${mediaQuery['belowDesktop']} {
+    margin: var(--space-3xl);
+    height: calc(100% - 100px);
+
+    .home-wrapper {
+      flex-direction: column;
+
+      .content-left {
+        flex: unset;
+
+        span {
+          font-size: 80px;
+          line-height: normal;
+          margin-bottom: var(--space-2xl);
+        }
+
+        .title-and {
+          font-size: 40px;
+        }
+      }
+
+      .content-right {
+        flex: 1;
+        margin-left: 0px;
+      }
+
+      .swiper-nav-btn {
+        display: none;
+      }
+
+      .swiper {
+        .swiper-slide {
+          margin-left: 0px;
+          img {
+            height: 100%;
+          }
+        }
+      }
+    }
+  }
+
+  ${mediaQuery['belowTablet']} {
+    margin: var(--space-2xl) var(--space-lg) var(--space-lg);
+    height: calc(100% - 60px);
+
+    .home-wrapper {
+      .content-left {
+        span {
+          font-size: 60px;
+          margin-bottom: var(--space-lg);
+        }
+      }
+    }
+  }
 `;
 
 const SliderContent = styled.div`
-  width: 30vw;
+  width: auto;
   height: 100%;
   text-align: left;
   font-family: 'UKIJ Tuz Tor';
+  aspect-ratio: 9 / 16;
 
   img {
     object-fit: cover;
@@ -117,38 +194,84 @@ const SliderContent = styled.div`
     margin: var(--space-xs);
     font-size: 40px;
   }
+
+  ${mediaQuery['belowDesktop']} {
+    width: 100%;
+    .title,
+    .description {
+      display: none;
+    }
+  }
 `;
 
 const items = [
   {
     url: slider1,
-    title: 'Portrait',
-    description: 'Khoa Nguyen',
+    title: 'Plate',
+    description: 'Calibrated Plate',
   },
   {
     url: slider2,
-    title: 'Editorial',
-    description: 'Untitled',
+    title: 'Plate',
+    description: 'Calibrated Plate',
   },
   {
     url: slider3,
-    title: 'Emotional',
-    description: 'Unknown',
+    title: 'Plate',
+    description: 'Calibrated Plate',
   },
   {
-    url: slider2,
-    title: 'Traditional',
-    description: 'Unknown',
+    url: slider4,
+    title: 'Bar',
+    description: 'Power Bar',
   },
 ];
 
+const defaultConfigs = {
+  loop: true,
+  slidesPerView: 'auto',
+};
+
+const paginationConfigs = {
+  modules: [Autoplay],
+};
+
 const Home = () => {
   const sliderRef = useRef(null);
+  const { isMobile, isTable } = useResize();
 
   const handleNext = useCallback(() => {
     if (!sliderRef.current) return;
     sliderRef.current.swiper.slideNext();
   }, []);
+
+  const slideConfigs = useCallback(() => {
+    const configs = { ...defaultConfigs, ...paginationConfigs };
+
+    if (isTable) {
+      return {
+        ...configs,
+        slidesPerView: 2,
+        spaceBetween: 45,
+        autoplay: {
+          delay: 2000,
+          disableOnInteraction: false,
+        },
+      };
+    }
+
+    if (isMobile) {
+      return {
+        ...configs,
+        slidesPerView: 1,
+        autoplay: {
+          delay: 2000,
+          disableOnInteraction: false,
+        },
+      };
+    }
+    return configs;
+  }, [isMobile, isTable]);
 
   return (
     <ContainerWrapper>
@@ -169,7 +292,7 @@ const Home = () => {
             </div>
           </div>
 
-          <Swiper slidesPerView="auto" loop={true} className="slide-swiper" ref={sliderRef}>
+          <Swiper {...slideConfigs()} className="slide-swiper" ref={sliderRef}>
             {items.map(({ title, url, description }, idx) => {
               return (
                 <SwiperSlide key={idx}>

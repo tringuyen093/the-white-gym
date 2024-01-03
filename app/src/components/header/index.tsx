@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import { Link } from 'react-router-dom';
 import mediaQuery from '@/utils/units/mediaQuery';
 import useResize from '@/hooks/useResize';
@@ -42,7 +42,7 @@ const HeaderWrapper = styled.div`
     width: 100%;
     display: flex;
     align-items: center;
-    margin-left: 200px;
+    margin-left: 140px;
 
     .menu-item {
       cursor: pointer;
@@ -71,6 +71,12 @@ const HeaderWrapper = styled.div`
     }
   }
 
+  ${mediaQuery['belowBiggerDesktop']} {
+    .menu {
+      margin-left: 0px;
+    }
+  }
+
   ${mediaQuery['belowDesktop']} {
     .container {
       width: calc(100% - 40px);
@@ -83,15 +89,16 @@ const HeaderMobileWrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  position: relative;
-  min-height: 60px;
+  width: 100%;
+  transition: all 300ms ease;
+  min-height: 80px;
+  margin: 0 auto;
 
   .logo {
     margin-right: 0;
 
     img {
       padding: var(--space-3xs) 0;
-      width: 70px;
     }
   }
 
@@ -156,6 +163,34 @@ const HeaderMobileWrapper = styled.div`
   }
 `;
 
+const MenuMobileWrapper = styled.div<{ toggle: boolean }>`
+  width: 100%;
+  height: 100%;
+  background: var(--color-white);
+  position: fixed;
+  left: ${({ toggle }) => (toggle ? '0px' : '-1500px')};
+  top: 0;
+  transition: all 400ms ease;
+
+  .menu {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding-top: var(--space-xl);
+    padding-left: var(--space-lg);
+
+    .menu-item {
+      padding: var(--space-xs) var(--space-2sm);
+    }
+  }
+
+  .menu-toggle.expanded {
+    position: absolute;
+    right: var(--space-sm);
+    top: var(--space-lg);
+  }
+`;
+
 const menus = [
   {
     name: 'Prices',
@@ -175,6 +210,30 @@ const menus = [
   },
 ];
 
+const MenuMobile = ({ toggle, onToggleMenu }): { toggle: boolean; onToggleMenu: () => void } => {
+  const mobileMenus = [{ name: 'Home', url: '/' }, ...menus];
+
+  return (
+    <MenuMobileWrapper toggle={toggle}>
+      <div className="menu-toggle expanded" onClick={onToggleMenu}>
+        <span className="line-toggle" />
+        <span className="line-toggle" />
+        <span className="line-toggle" />
+      </div>
+
+      <div className="menu">
+        {mobileMenus.map(({ name, url }, idx) => {
+          return (
+            <div className="menu-item" key={idx} onClick={onToggleMenu}>
+              <Link to={url}>{name}</Link>
+            </div>
+          );
+        })}
+      </div>
+    </MenuMobileWrapper>
+  );
+};
+
 const HeaderMobile = () => {
   const [toggle, setToggle] = useState(false);
 
@@ -191,6 +250,8 @@ const HeaderMobile = () => {
         <span className="line-toggle" />
         <span className="line-toggle" />
       </div>
+
+      <MenuMobile toggle={toggle} onToggleMenu={() => setToggle(!toggle)} />
     </HeaderMobileWrapper>
   );
 };
@@ -218,7 +279,9 @@ const HeaderDesktop = () => (
 const Header = () => {
   const [scrollY, setScrollY] = useState(0);
   const [isScroll, setIsScroll] = useState(false);
-  const { isMobile } = useResize();
+  const { isMobile, isTable } = useResize();
+
+  const isBelowDesktop = useMemo(() => isMobile || isTable, [isMobile, isTable]);
 
   useEffect(() => {
     if (isMobile) return;
@@ -238,7 +301,7 @@ const Header = () => {
   return (
     <HeaderWrapper>
       <div className={isScroll ? 'scrolling' : null}>
-        {isMobile ? <HeaderMobile /> : <HeaderDesktop />}
+        {isBelowDesktop ? <HeaderMobile /> : <HeaderDesktop />}
       </div>
     </HeaderWrapper>
   );
