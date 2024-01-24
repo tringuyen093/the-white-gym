@@ -6,6 +6,8 @@ import { Autoplay, Navigation } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/navigation';
 
+import dumbbell1 from '@/assets/images/dumbbells/1.jpeg';
+import dumbbell2 from '@/assets/images/dumbbells/2.jpg';
 import equipment1 from '@/assets/images/equipments/1.jpg';
 import equipment2 from '@/assets/images/equipments/2.jpeg';
 import equipment3 from '@/assets/images/equipments/3.jpg';
@@ -52,7 +54,16 @@ const ContainerWrapper = styled.div`
   }
 `;
 
-const equipments = [equipment1, equipment2, equipment3, equipment4, equipment5, equipment6];
+const equipments = [
+  dumbbell1,
+  dumbbell2,
+  equipment1,
+  equipment2,
+  equipment3,
+  equipment4,
+  equipment5,
+  equipment6,
+];
 
 const Equipment = () => {
   return (
