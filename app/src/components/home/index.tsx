@@ -7,9 +7,9 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay } from 'swiper/modules';
 import 'swiper/css';
 
-import slider1 from '@/assets/images/equipments/1.jpg';
-import slider2 from '@/assets/images/equipments/6.jpeg';
-import slider3 from '@/assets/images/equipments/5.jpg';
+import slider1 from '@/assets/images/dumbbells/1.jpeg';
+import slider2 from '@/assets/images/equipments/1.jpg';
+import slider3 from '@/assets/images/equipments/6.jpeg';
 import slider4 from '@/assets/images/equipments/2.jpeg';
 
 const ContainerWrapper = styled.div`
@@ -170,6 +170,24 @@ const ContainerWrapper = styled.div`
       }
     }
   }
+
+  ${mediaQuery['above420']} {
+    margin: var(--space-lg);
+    height: calc(100% - 48px);
+
+    .home-wrapper {
+      .content-left {
+        span {
+          font-size: 40px;
+          margin-bottom: var(--space-lg);
+        }
+
+        .title-and {
+          font-size: 30px;
+        }
+      }
+    }
+  }
 `;
 
 const SliderContent = styled.div`
@@ -207,8 +225,8 @@ const SliderContent = styled.div`
 const items = [
   {
     url: slider1,
-    title: 'Plate',
-    description: 'Calibrated Plate',
+    title: 'Dumbbell',
+    description: 'Exclusively designed dumbbell',
   },
   {
     url: slider2,

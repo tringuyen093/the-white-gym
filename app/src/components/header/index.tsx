@@ -83,6 +83,14 @@ const HeaderWrapper = styled.div`
       margin: 0 var(--space-2sm);
     }
   }
+
+  ${mediaQuery['belowTablet']} {
+    .logo {
+      img {
+        width: 200px;
+      }
+    }
+  }
 `;
 
 const HeaderMobileWrapper = styled.div`
@@ -110,6 +118,7 @@ const HeaderMobileWrapper = styled.div`
     background: var(--color-white);
     position: absolute;
     right: var(--space-sm);
+    top: var(--space-lg);
     display: flex;
     align-items: center;
     justify-content: center;
