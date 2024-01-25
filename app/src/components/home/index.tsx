@@ -171,7 +171,7 @@ const ContainerWrapper = styled.div`
     }
   }
 
-  ${mediaQuery['above420']} {
+  ${mediaQuery['below420']} {
     margin: var(--space-lg);
     height: calc(100% - 48px);
 
